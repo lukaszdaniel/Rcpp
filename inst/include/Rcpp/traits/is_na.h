@@ -28,7 +28,7 @@ namespace Rcpp{
     namespace traits{
 
         // default to always false, applies to VECSXP, EXPRSXP and RAWSXP
-        template <int RTYPE>
+        template <SEXPTYPE RTYPE>
         bool is_na(typename storage_type<RTYPE>::type) {
             return false;
         }

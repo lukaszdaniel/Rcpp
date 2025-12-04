@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace internal{
 
-	template<int RTYPE, template <class> class StoragePolicy>
+	template<SEXPTYPE RTYPE, template <class> class StoragePolicy>
 	class const_string_proxy {
 	public:
 
@@ -77,10 +77,10 @@ namespace internal{
 		 * Prints the element this proxy refers to to an
 		 * output stream
 		 */
-		template <int RT, template <class> class StoragePolicy_>
+		template <SEXPTYPE RT, template <class> class StoragePolicy_>
 		friend std::ostream& operator<<(std::ostream& os, const const_string_proxy<RT, StoragePolicy_>& proxy);
 
-		template <int RT, template <class> class StoragePolicy_>
+		template <SEXPTYPE RT, template <class> class StoragePolicy_>
 		friend std::string operator+( const std::string& x, const const_string_proxy<RT, StoragePolicy_>& proxy);
 
 		const VECTOR* parent;
@@ -124,7 +124,7 @@ namespace internal{
 
 	} ;
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator<( const const_string_proxy<RT>& lhs, const const_string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -132,7 +132,7 @@ namespace internal{
 			) < 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator>( const const_string_proxy<RT>& lhs, const const_string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -140,7 +140,7 @@ namespace internal{
 			) > 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator>=( const const_string_proxy<RT>& lhs, const const_string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -148,7 +148,7 @@ namespace internal{
 			) >= 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator<=( const const_string_proxy<RT>& lhs, const const_string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -156,7 +156,7 @@ namespace internal{
 			) <= 0 ;
 	}
 
-	template<int RTYPE, template <class> class StoragePolicy> std::string const_string_proxy<RTYPE, StoragePolicy>::buffer ;
+	template<SEXPTYPE RTYPE, template <class> class StoragePolicy> std::string const_string_proxy<RTYPE, StoragePolicy>::buffer ;
 
 	template <template <class> class StoragePolicy>
 	inline std::ostream& operator<<(std::ostream& os, const const_string_proxy<STRSXP, StoragePolicy>& proxy) {
@@ -169,7 +169,7 @@ namespace internal{
 		return x + static_cast<const char*>(y) ;
 	}
 
-	template <int RTYPE, template <class> class StoragePolicy1>
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy1>
 	template <template <class> class StoragePolicy2>
 	string_proxy<RTYPE, StoragePolicy1>& string_proxy<RTYPE, StoragePolicy1>::operator=(const const_string_proxy<RTYPE, StoragePolicy2>& other){
        set( other.get() ) ;

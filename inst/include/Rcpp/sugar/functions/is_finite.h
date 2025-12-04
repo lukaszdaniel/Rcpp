@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename VEC_TYPE>
+template <SEXPTYPE RTYPE, bool NA, typename VEC_TYPE>
 class IsFinite : public ::Rcpp::VectorBase< LGLSXP, false, IsFinite<RTYPE,NA,VEC_TYPE> > {
 public:
 
@@ -45,7 +45,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::IsFinite<RTYPE,NA,T> is_finite( const Rcpp::VectorBase<RTYPE,NA,T>& t){
 	return sugar::IsFinite<RTYPE,NA,T>( t.get_ref() ) ;
 }

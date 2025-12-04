@@ -28,7 +28,7 @@ namespace Rcpp{
 namespace sugar{
 
 
-    template <int RTYPE>
+    template <SEXPTYPE RTYPE>
     class SelfHash {
     public:
         typedef typename traits::storage_type<RTYPE>::type STORAGE ;

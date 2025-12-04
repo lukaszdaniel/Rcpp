@@ -110,7 +110,7 @@ inline Vector<INTSXP> SampleReplace(Vector<REALSXP>& p, int n, int k, bool one_b
 }
 
 // Element version
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline Vector<RTYPE> SampleReplace(Vector<REALSXP>& p, int k, const Vector<RTYPE>& ref)
 {
     int n = ref.size();
@@ -197,7 +197,7 @@ inline Vector<INTSXP> WalkerSample(const Vector<REALSXP>& p, int n, int nans, bo
 }
 
 // Element version
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline Vector<RTYPE> WalkerSample(const Vector<REALSXP>& p, int nans, const Vector<RTYPE>& ref)
 {
     int n = ref.size();
@@ -291,7 +291,7 @@ inline Vector<INTSXP> SampleNoReplace(Vector<REALSXP>& p, int n, int nans, bool 
 }
 
 // Element version
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline Vector<RTYPE> SampleNoReplace(Vector<REALSXP>& p, int nans, const Vector<RTYPE>& ref)
 {
     int n = ref.size();
@@ -363,7 +363,7 @@ inline Vector<INTSXP> EmpiricalSample(int n, int size, bool replace, bool one_ba
 }
 
 // Element version
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline Vector<RTYPE> EmpiricalSample(int size, bool replace, const Vector<RTYPE>& ref)
 {
     int n = ref.size();
@@ -432,7 +432,7 @@ sample(int n, int size, bool replace = false, sugar::probs_t probs = R_NilValue,
     return sugar::EmpiricalSample(n, size, replace, one_based);
 }
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline Vector<RTYPE>
 sample(const Vector<RTYPE>& x, int size, bool replace = false, sugar::probs_t probs = R_NilValue)
 {

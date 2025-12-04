@@ -27,7 +27,7 @@ namespace sugar{
 
 #undef RCPP_OP
 #define RCPP_OP(NAME,OP)   	                                     \
-template <int RTYPE>                                                \
+template <SEXPTYPE RTYPE>                                                \
 class NAME {                                                        \
 public:                                                             \
 	typedef typename traits::storage_type<RTYPE>::type STORAGE ;    \

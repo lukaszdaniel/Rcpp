@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool LHS_NA, typename LHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T>
 class Row : public MatrixBase<
 	INTSXP ,
 	false ,
@@ -50,7 +50,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool LHS_NA, typename LHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T>
 inline sugar::Row<RTYPE,LHS_NA,LHS_T>
 row( const Rcpp::MatrixBase<RTYPE,LHS_NA,LHS_T>& lhs){
 	return sugar::Row<RTYPE,LHS_NA,LHS_T>( lhs ) ;

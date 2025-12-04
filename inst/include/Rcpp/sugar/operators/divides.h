@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-	template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+	template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
 	class Divides_Vector_Vector : public Rcpp::VectorBase<RTYPE,true, Divides_Vector_Vector<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,LHS_NA,LHS_T> LHS_TYPE ;
@@ -75,7 +75,7 @@ namespace sugar{
 	} ;
 
 
-	template <int RTYPE, typename LHS_T, bool RHS_NA, typename RHS_T >
+	template <SEXPTYPE RTYPE, typename LHS_T, bool RHS_NA, typename RHS_T >
 	class Divides_Vector_Vector<RTYPE,false,LHS_T,RHS_NA,RHS_T> : public Rcpp::VectorBase<RTYPE,true, Divides_Vector_Vector<RTYPE,false,LHS_T,RHS_NA,RHS_T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,false,LHS_T> LHS_TYPE ;
@@ -124,7 +124,7 @@ namespace sugar{
 	} ;
 
 
-	template <int RTYPE, bool LHS_NA, typename LHS_T, typename RHS_T >
+	template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, typename RHS_T >
 	class Divides_Vector_Vector<RTYPE,LHS_NA,LHS_T,false,RHS_T> :
 	    public Rcpp::VectorBase<RTYPE,true, Divides_Vector_Vector<RTYPE,LHS_NA,LHS_T,false,RHS_T> > {
 	public:
@@ -172,7 +172,7 @@ namespace sugar{
 	} ;
 
 
-	template <int RTYPE, typename LHS_T, typename RHS_T >
+	template <SEXPTYPE RTYPE, typename LHS_T, typename RHS_T >
 	class Divides_Vector_Vector<RTYPE,false,LHS_T,false,RHS_T> :
 	    public Rcpp::VectorBase<RTYPE,false, Divides_Vector_Vector<RTYPE,false,LHS_T,false,RHS_T> > {
 	public:
@@ -222,7 +222,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class Divides_Vector_Primitive :
 	    public Rcpp::VectorBase<RTYPE,true, Divides_Vector_Primitive<RTYPE,NA,T> > {
 	public:
@@ -272,7 +272,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, typename T>
+	template <SEXPTYPE RTYPE, typename T>
 	class Divides_Vector_Primitive<RTYPE,false,T> :
 	    public Rcpp::VectorBase<RTYPE,true, Divides_Vector_Primitive<RTYPE,false,T> > {
 	public:
@@ -318,7 +318,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class Divides_Primitive_Vector :
 	    public Rcpp::VectorBase<RTYPE,true, Divides_Primitive_Vector<RTYPE,NA,T> > {
 	public:
@@ -362,7 +362,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, typename T>
+	template <SEXPTYPE RTYPE, typename T>
 	class Divides_Primitive_Vector<RTYPE,false,T> :
 	    public Rcpp::VectorBase<RTYPE,true, Divides_Primitive_Vector<RTYPE,false,T> > {
 	public:
@@ -408,7 +408,7 @@ namespace sugar{
 
 }
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if<traits::is_convertible<typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, sugar::Divides_Vector_Primitive< RTYPE , NA, T > >::type
 operator/(
 	const VectorBase<RTYPE,NA,T>& lhs,
@@ -418,7 +418,7 @@ operator/(
 }
 
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if< traits::is_convertible< typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, sugar::Divides_Primitive_Vector< RTYPE , NA,T> >::type
 operator/(
 	const U &lhs,
@@ -427,7 +427,7 @@ operator/(
 	return sugar::Divides_Primitive_Vector<RTYPE,NA,T>( lhs, rhs ) ;
 }
 
-template <int RTYPE,bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline sugar::Divides_Vector_Vector<
 	RTYPE ,
 	LHS_NA, LHS_T,

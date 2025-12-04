@@ -28,7 +28,7 @@
 namespace Rcpp{
 
     /** a base class for vectors, modelled after the CRTP */
-    template <int RTYPE, bool na, typename MATRIX>
+    template <SEXPTYPE RTYPE, bool na, typename MATRIX>
     class MatrixBase : public traits::expands_to_logical__impl<RTYPE> {
     public:
         struct r_type : traits::integral_constant<int,RTYPE>{} ;

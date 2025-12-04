@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class MatrixColumn : public VectorBase<RTYPE,true,MatrixColumn<RTYPE> > {
 public:
     typedef Matrix<RTYPE> MATRIX ;
@@ -63,7 +63,7 @@ public:
         start(other.start),
         const_start(other.const_start) {}
 
-    template <int RT, bool NA, typename T>
+    template <SEXPTYPE RT, bool NA, typename T>
     MatrixColumn& operator=( const Rcpp::VectorBase<RT,NA,T>& rhs ){
         const T& ref = rhs.get_ref() ;
         RCPP_LOOP_UNROLL(start,ref)
@@ -119,7 +119,7 @@ private:
 
 } ;
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class ConstMatrixColumn : public VectorBase<RTYPE,true,ConstMatrixColumn<RTYPE> > {
 public:
     typedef Matrix<RTYPE> MATRIX ;

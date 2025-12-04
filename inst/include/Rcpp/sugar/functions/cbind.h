@@ -33,11 +33,11 @@ struct cbind_sexptype_traits
 
 template <>
 struct cbind_sexptype_traits<SEXP> {
-    enum { rtype = STRSXP };
+    static constexpr SEXPTYPE rtype = STRSXP;
 };
 
 // override storage_type<LGLSXP> (int)
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct cbind_storage_type 
     : public Rcpp::traits::storage_type<RTYPE> {};
 
@@ -48,7 +48,7 @@ struct cbind_storage_type<LGLSXP> {
 
 
 // CRTP base
-template <int RTYPE, typename E>
+template <SEXPTYPE RTYPE, typename E>
 class BindableExpression {
 public:
     typedef typename cbind_storage_type<RTYPE>::type stored_type;
@@ -78,7 +78,7 @@ public:
 };
 
 // Matrix, Vector interface to BindableExpression
-template <int RTYPE, typename T>
+template <SEXPTYPE RTYPE, typename T>
 class ContainerBindable
     : public BindableExpression<RTYPE, ContainerBindable<RTYPE, T> > {
 public:
@@ -125,7 +125,7 @@ public:
 };
 
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct scalar {
     typedef typename cbind_storage_type<RTYPE>::type type;
 };
@@ -162,7 +162,7 @@ public:
 
 
 // binding logic; non-scalar operands
-template <int RTYPE, typename E1, typename E2>
+template <SEXPTYPE RTYPE, typename E1, typename E2>
 class JoinOp
     : public BindableExpression<RTYPE, JoinOp<RTYPE, E1, E2> >,
       public Rcpp::MatrixBase<RTYPE, true, JoinOp<RTYPE, E1, E2> > {
@@ -205,7 +205,7 @@ public:
 };
 
 // binding logic; rhs scalar
-template <int RTYPE, typename E1>
+template <SEXPTYPE RTYPE, typename E1>
 class JoinOp<RTYPE, E1, ScalarBindable<typename scalar<RTYPE>::type> >
     : public BindableExpression<RTYPE,
         JoinOp<RTYPE, E1,
@@ -244,7 +244,7 @@ public:
 };
 
 // binding logic; lhs scalar
-template <int RTYPE, typename E2>
+template <SEXPTYPE RTYPE, typename E2>
 class JoinOp<RTYPE, ScalarBindable<typename scalar<RTYPE>::type>, E2>
     : public BindableExpression<RTYPE,
         JoinOp<RTYPE,
@@ -283,7 +283,7 @@ public:
 };
 
 // binding logic; both scalar
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class JoinOp<RTYPE, ScalarBindable<typename scalar<RTYPE>::type>, 
                     ScalarBindable<typename scalar<RTYPE>::type> >
     : public BindableExpression<RTYPE,
@@ -326,13 +326,13 @@ public:
 };
 
 // for template argument deduction
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline ContainerBindable<RTYPE, Rcpp::Matrix<RTYPE> >
 MakeContainerBindable(const Rcpp::Matrix<RTYPE>& x) {
     return ContainerBindable<RTYPE, Rcpp::Matrix<RTYPE> >(x);
 }
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 inline ContainerBindable<RTYPE, Rcpp::Vector<RTYPE> >
 MakeContainerBindable(const Rcpp::Vector<RTYPE>& x) {
     return ContainerBindable<RTYPE, Rcpp::Vector<RTYPE> >(x);
@@ -357,7 +357,7 @@ MakeScalarBindable(const T& t) {
 }
 
 // for expressions of arbitrary length
-template <int RTYPE, typename E1, typename E2>
+template <SEXPTYPE RTYPE, typename E1, typename E2>
 inline JoinOp<RTYPE, E1, E2> operator,(
     const BindableExpression<RTYPE, E1>& e1,
     const BindableExpression<RTYPE, E2>& e2)

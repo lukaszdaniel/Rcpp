@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool LHS_NA, bool RHS_NA> struct pmax_op ;
+template <SEXPTYPE RTYPE, bool LHS_NA, bool RHS_NA> struct pmax_op ;
 
 // specializations for double.
 // we use the fact that NA < x is false
@@ -62,7 +62,7 @@ struct pmax_op<INTSXP,LHS_NA,RHS_NA> {
 
 
 // general case
-template <int RTYPE, bool NA> class pmax_op_Vector_Primitive {
+template <SEXPTYPE RTYPE, bool NA> class pmax_op_Vector_Primitive {
 public:
 	typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 
@@ -92,7 +92,7 @@ private:
 
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool LHS_NA, typename LHS_T,
 	bool RHS_NA, typename RHS_T
 	>
@@ -121,7 +121,7 @@ private:
 
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool LHS_NA, typename LHS_T
 	>
 class Pmax_Vector_Primitive : public VectorBase<
@@ -150,7 +150,7 @@ private:
 } // sugar
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool LHS_NA, typename LHS_T,
 	bool RHS_NA, typename RHS_T
 >
@@ -163,7 +163,7 @@ pmax(
 }
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool LHS_NA, typename LHS_T
 >
 inline sugar::Pmax_Vector_Primitive<RTYPE,LHS_NA,LHS_T>
@@ -176,7 +176,7 @@ pmax(
 
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool RHS_NA, typename RHS_T
 >
 inline sugar::Pmax_Vector_Primitive<RTYPE,RHS_NA,RHS_T>

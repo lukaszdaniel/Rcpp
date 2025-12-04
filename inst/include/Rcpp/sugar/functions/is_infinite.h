@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename VEC_TYPE>
+template <SEXPTYPE RTYPE, bool NA, typename VEC_TYPE>
 class IsInfinite : public ::Rcpp::VectorBase< LGLSXP, false, IsInfinite<RTYPE,NA,VEC_TYPE> > {
 public:
 
@@ -45,7 +45,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::IsInfinite<RTYPE,NA,T> is_infinite( const Rcpp::VectorBase<RTYPE,NA,T>& t){
 	return sugar::IsInfinite<RTYPE,NA,T>( t.get_ref() ) ;
 }

@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Tail : public Rcpp::VectorBase< RTYPE ,NA, Tail<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -52,7 +52,7 @@ private:
 
 } // sugar
 
-template <int RTYPE,bool NA, typename T>
+template <SEXPTYPE RTYPE,bool NA, typename T>
 inline sugar::Tail<RTYPE,NA,T> tail(
 	const VectorBase<RTYPE,NA,T>& t,
 	R_xlen_t n

@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T, typename Function>
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function>
 class Lapply : public VectorBase<
 	VECSXP ,
 	true ,
@@ -51,7 +51,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T, typename Function >
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function >
 inline sugar::Lapply<RTYPE,NA,T,Function>
 lapply( const Rcpp::VectorBase<RTYPE,NA,T>& t, Function fun ){
 	return sugar::Lapply<RTYPE,NA,T,Function>( t, fun ) ;

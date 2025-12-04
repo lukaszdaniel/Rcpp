@@ -46,7 +46,7 @@ private:
     R_xlen_t index;
 } ;
 
-template <int RTYPE, typename TABLE_T>
+template <SEXPTYPE RTYPE, typename TABLE_T>
 class SelfMatch {
 public:
     typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -66,7 +66,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline IntegerVector self_match( const VectorBase<RTYPE,NA,T>& x ){
     Vector<RTYPE> vec(x) ;
     return sugar::SelfHash<RTYPE>(vec).fill_and_self_match() ;

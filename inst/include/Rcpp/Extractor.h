@@ -25,7 +25,7 @@
 namespace Rcpp {
 namespace traits {
 
-    template <int RTYPE, bool NA, typename VECTOR>
+    template <SEXPTYPE RTYPE, bool NA, typename VECTOR>
     struct Extractor {
         typedef VECTOR type ;
     } ;

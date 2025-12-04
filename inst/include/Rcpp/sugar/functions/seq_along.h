@@ -40,7 +40,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::SeqLen seq_along( const Rcpp::VectorBase<RTYPE,NA,T>& t){
 	return sugar::SeqLen( t.size() ) ;
 }

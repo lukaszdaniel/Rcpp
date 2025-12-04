@@ -41,7 +41,7 @@ namespace internal{
         template < template <class, class> class ContainerTemplate, typename T > class ContainerExporter {
         public:
             typedef ContainerTemplate<T, std::allocator<T> > Container ;
-            const static int RTYPE = Rcpp::traits::r_sexptype_traits<T>::rtype ;
+            const static SEXPTYPE RTYPE = Rcpp::traits::r_sexptype_traits<T>::rtype ;
 
             ContainerExporter( SEXP x ) : object(x){}
             ~ContainerExporter(){}

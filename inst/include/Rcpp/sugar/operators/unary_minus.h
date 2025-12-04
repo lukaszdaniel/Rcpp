@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	struct unary_minus_result_type{
 		typedef typename traits::storage_type<RTYPE>::type type ;
 		enum{ value = RTYPE } ;
@@ -37,7 +37,7 @@ namespace sugar{
 	} ;
 
 
-	template <int RTYPE,bool NA>
+	template <SEXPTYPE RTYPE,bool NA>
 	class unary_minus {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -46,7 +46,7 @@ namespace sugar{
 			return Rcpp::traits::is_na<RTYPE>(x) ? x : ( -x ) ;
 		}
 	} ;
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	class unary_minus<RTYPE,false> {
 	public:
 		typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -79,7 +79,7 @@ namespace sugar{
 	} ;
 
 
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class UnaryMinus_Vector : public Rcpp::VectorBase<
 		unary_minus_result_type<RTYPE>::value ,
 		NA,
@@ -108,7 +108,7 @@ namespace sugar{
 }
 }
 
-template <int RTYPE,bool NA, typename T>
+template <SEXPTYPE RTYPE,bool NA, typename T>
 inline Rcpp::sugar::UnaryMinus_Vector< RTYPE , NA , T >
 operator-(
 	const Rcpp::VectorBase<RTYPE,NA,T>& x

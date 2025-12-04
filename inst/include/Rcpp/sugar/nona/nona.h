@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar {
 
-    template <int RTYPE, bool NA, typename VECTOR>
+    template <SEXPTYPE RTYPE, bool NA, typename VECTOR>
     class Nona : public Rcpp::VectorBase<RTYPE,false, Nona<RTYPE,NA,VECTOR> > {
     public:
         typedef typename Rcpp::VectorBase<RTYPE,NA,VECTOR> SUGAR_TYPE ;
@@ -41,7 +41,7 @@ namespace sugar {
     } ;
 
     // specialization when the expression is actually a vector expression
-    template <int RTYPE, bool NA>
+    template <SEXPTYPE RTYPE, bool NA>
     class Nona< RTYPE,NA,Rcpp::Vector<RTYPE> > : public Rcpp::VectorBase<RTYPE,false, Nona<RTYPE,NA,Rcpp::Vector<RTYPE> > > {
     public:
         typedef typename Rcpp::VectorBase<RTYPE,NA, Rcpp::Vector<RTYPE> > SUGAR_TYPE ;
@@ -70,7 +70,7 @@ namespace sugar {
 
 }
 
-template <int RTYPE, bool NA, typename VECTOR>
+template <SEXPTYPE RTYPE, bool NA, typename VECTOR>
 inline sugar::Nona<RTYPE,NA,VECTOR> noNA( const Rcpp::VectorBase<RTYPE,NA,VECTOR>& vec ){
     return sugar::Nona<RTYPE,NA,VECTOR>( vec ) ;
 }

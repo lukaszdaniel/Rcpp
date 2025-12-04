@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE,
+template <SEXPTYPE RTYPE,
           bool LHS_NA, typename LHS_T,
           bool RHS_NA, typename RHS_T,
           typename Function >
@@ -39,7 +39,7 @@ class Outer : public MatrixBase<
 > {
 public:
     typedef typename ::Rcpp::traits::result_of<Function, LHS_T, RHS_T>::type result_type ;
-    const static int RESULT_R_TYPE =
+    const static SEXPTYPE RESULT_R_TYPE =
         Rcpp::traits::r_sexptype_traits<result_type>::rtype ;
 
     typedef Rcpp::VectorBase<RTYPE,LHS_NA,LHS_T> LHS_TYPE ;
@@ -73,7 +73,7 @@ private:
 
 } // sugar
 
-template <int RTYPE,
+template <SEXPTYPE RTYPE,
           bool LHS_NA, typename LHS_T,
           bool RHS_NA, typename RHS_T,
           typename Function >

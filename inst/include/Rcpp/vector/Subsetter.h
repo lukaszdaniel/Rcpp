@@ -27,8 +27,8 @@
 namespace Rcpp {
 
 template <
-    int RTYPE, template <class> class StoragePolicy,
-    int RHS_RTYPE, bool RHS_NA, typename RHS_T
+    SEXPTYPE RTYPE, template <class> class StoragePolicy,
+    SEXPTYPE RHS_RTYPE, bool RHS_NA, typename RHS_T
 >
 class SubsetProxy {
 
@@ -51,7 +51,7 @@ public:
         indices_n(other.indices_n) {}
 
     // Enable e.g. x[y] = z
-    template <int OtherRTYPE, template <class> class OtherStoragePolicy>
+    template <SEXPTYPE OtherRTYPE, template <class> class OtherStoragePolicy>
     SubsetProxy& operator=(const Vector<OtherRTYPE, OtherStoragePolicy>& other) {
         R_xlen_t n = other.size();
 
@@ -99,7 +99,7 @@ public:
         return *this;
     }
 
-    template <int RTYPE_OTHER, template <class> class StoragePolicyOther,int RHS_RTYPE_OTHER, bool RHS_NA_OTHER, typename RHS_T_OTHER>
+    template <SEXPTYPE RTYPE_OTHER, template <class> class StoragePolicyOther,SEXPTYPE RHS_RTYPE_OTHER, bool RHS_NA_OTHER, typename RHS_T_OTHER>
     SubsetProxy& operator=(const SubsetProxy<RTYPE_OTHER, StoragePolicyOther, RHS_RTYPE_OTHER, RHS_NA_OTHER, RHS_T_OTHER>& other) {
 
         Vector<RTYPE_OTHER, StoragePolicyOther> other_vec = other;
@@ -232,8 +232,8 @@ private:
 public:
 
 #define RCPP_GENERATE_SUBSET_PROXY_OPERATOR(__OPERATOR__)                             \
-    template <int RTYPE_OTHER, template <class> class StoragePolicyOther,             \
-              int RHS_RTYPE_OTHER, bool RHS_NA_OTHER, typename RHS_T_OTHER>           \
+    template <SEXPTYPE RTYPE_OTHER, template <class> class StoragePolicyOther,        \
+              SEXPTYPE RHS_RTYPE_OTHER, bool RHS_NA_OTHER, typename RHS_T_OTHER>      \
     Vector<RTYPE, StoragePolicy> operator __OPERATOR__ (                              \
         const SubsetProxy<RTYPE_OTHER, StoragePolicyOther, RHS_RTYPE_OTHER,           \
                           RHS_NA_OTHER, RHS_T_OTHER>& other) {                        \

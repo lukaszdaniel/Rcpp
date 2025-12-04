@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE, template <class> class StoragePolicy = PreserveStorage >
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage >
 class Vector :
     public StoragePolicy< Vector<RTYPE,StoragePolicy> >,
     public SlotProxyPolicy< Vector<RTYPE,StoragePolicy> >,
@@ -378,7 +378,7 @@ public:
     }
 
     // sugar subsetting requires dispatch on VectorBase
-    template <int RHS_RTYPE, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RHS_RTYPE, bool RHS_NA, typename RHS_T>
     SubsetProxy<RTYPE, StoragePolicy, RHS_RTYPE, RHS_NA, RHS_T>
     operator[](const VectorBase<RHS_RTYPE, RHS_NA, RHS_T>& rhs) {
         return SubsetProxy<RTYPE, StoragePolicy, RHS_RTYPE, RHS_NA, RHS_T>(
@@ -387,7 +387,7 @@ public:
         );
     }
 
-    template <int RHS_RTYPE, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RHS_RTYPE, bool RHS_NA, typename RHS_T>
     const SubsetProxy<RTYPE, StoragePolicy, RHS_RTYPE, RHS_NA, RHS_T>
     operator[](const VectorBase<RHS_RTYPE, RHS_NA, RHS_T>& rhs) const {
         return SubsetProxy<RTYPE, StoragePolicy, RHS_RTYPE, RHS_NA, RHS_T>(
@@ -1183,7 +1183,7 @@ public:
 
 } ; /* Vector */
 
-template <int RTYPE, template <class> class StoragePolicy >
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy >
 inline std::ostream &operator<<(std::ostream & s, const Vector<RTYPE, StoragePolicy> & rhs) {
     typedef Vector<RTYPE, StoragePolicy> VECTOR;
 

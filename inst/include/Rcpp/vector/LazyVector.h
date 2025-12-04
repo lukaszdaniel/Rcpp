@@ -51,7 +51,7 @@ private:
     mutable std::vector<bool> known ;
 } ;
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class LazyVector< Rcpp::Vector<RTYPE> >{
 public:
     typedef Rcpp::Vector<RTYPE> VECTOR ;

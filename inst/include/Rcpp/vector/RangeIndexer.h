@@ -49,7 +49,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <int RTYPE, bool NA, typename VECTOR>
+template <SEXPTYPE RTYPE, bool NA, typename VECTOR>
 class RangeIndexer : public VectorBase<RTYPE, NA, RangeIndexer<RTYPE,NA,VECTOR> >  {
 public:
 	typedef typename VECTOR::Proxy Proxy ;

@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <typename InputIterator, typename KEY, typename VALUE, int RTYPE>
+template <typename InputIterator, typename KEY, typename VALUE, SEXPTYPE RTYPE>
 inline SEXP range_wrap_dispatch___impl__pair( InputIterator first, InputIterator last, Rcpp::traits::true_type ){
 	RCPP_DEBUG_3( "range_wrap_dispatch___impl__pair<KEY = %s, VALUE = %s, RTYPE = %d>\n", DEMANGLE(KEY), DEMANGLE(VALUE), RTYPE)
     R_xlen_t size = std::distance( first, last ) ;
@@ -43,7 +43,7 @@ inline SEXP range_wrap_dispatch___impl__pair( InputIterator first, InputIterator
 	return x ;
 }
 
-template <typename InputIterator, typename KEY, typename VALUE, int RTYPE>
+template <typename InputIterator, typename KEY, typename VALUE, SEXPTYPE RTYPE>
 inline SEXP range_wrap_dispatch___impl__pair( InputIterator first, InputIterator last, Rcpp::traits::false_type ){
 	R_xlen_t size = std::distance( first, last ) ;
 

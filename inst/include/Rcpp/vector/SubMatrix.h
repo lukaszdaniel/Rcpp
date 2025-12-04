@@ -23,7 +23,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class SubMatrix : public Rcpp::MatrixBase< RTYPE, true, SubMatrix<RTYPE> > {
 public:
     typedef Matrix<RTYPE> MATRIX ;
@@ -54,7 +54,7 @@ private:
     R_xlen_t m_nr, nc, nr ;
 } ;
 
-template <int RTYPE, template <class> class StoragePolicy >
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy >
 Matrix<RTYPE,StoragePolicy>::Matrix( const SubMatrix<RTYPE>& sub ) : VECTOR( Rf_allocMatrix( RTYPE, (int)sub.nrow(), (int)sub.ncol() )), nrows((int)sub.nrow()) {
     R_xlen_t nc = sub.ncol() ;
     iterator start = VECTOR::begin() ;
@@ -67,7 +67,7 @@ Matrix<RTYPE,StoragePolicy>::Matrix( const SubMatrix<RTYPE>& sub ) : VECTOR( Rf_
 	}
 }
 
-template <int RTYPE, template <class> class StoragePolicy >
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy >
 Matrix<RTYPE,StoragePolicy>& Matrix<RTYPE,StoragePolicy>::operator=( const SubMatrix<RTYPE>& sub ){
     int nc = sub.ncol(), nr = sub.nrow() ;
     if( nc != nrow() || nr != ncol() ){

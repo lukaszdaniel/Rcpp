@@ -33,7 +33,7 @@ public:
     typedef typename traits::r_vector_iterator<VECSXP>::type iterator;
     typedef typename traits::r_vector_const_iterator<VECSXP>::type const_iterator;
 
-    ListOf(): list(R_NilValue) {}
+    ListOf(): list((SEXP)R_NilValue) {}
 
     ListOf(SEXP data_): list(data_) {
         std::transform(list.begin(), list.end(), list.begin(), as<T>);
@@ -117,10 +117,10 @@ private:
 
 namespace sugar {
 
-template <int RTYPE, bool NA, typename T, typename Function>
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function>
 class Lapply;
 
-template <int RTYPE, bool NA, typename T, typename Function, bool NO_CONVERSION>
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function, bool NO_CONVERSION>
 class Sapply;
 
 }

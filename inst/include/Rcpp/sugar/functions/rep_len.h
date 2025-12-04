@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Rep_len : public Rcpp::VectorBase< RTYPE ,NA, Rep_len<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -46,7 +46,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::Rep_len<RTYPE,NA,T> rep_len( const VectorBase<RTYPE,NA,T>& t, R_xlen_t len ){
 	return sugar::Rep_len<RTYPE,NA,T>( t, len ) ;
 }

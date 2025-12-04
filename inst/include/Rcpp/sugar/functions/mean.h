@@ -23,7 +23,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Mean : public Lazy<double, Mean<RTYPE,NA,T> > {
 public:
     typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE;

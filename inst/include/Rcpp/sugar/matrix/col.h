@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool LHS_NA, typename LHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T>
 class Col : public MatrixBase<
 	INTSXP ,
 	false ,
@@ -50,7 +50,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool LHS_NA, typename LHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T>
 inline sugar::Col<RTYPE,LHS_NA,LHS_T>
 col( const Rcpp::MatrixBase<RTYPE,LHS_NA,LHS_T>& lhs){
 	return sugar::Col<RTYPE,LHS_NA,LHS_T>( lhs ) ;

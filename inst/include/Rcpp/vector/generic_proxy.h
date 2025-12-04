@@ -23,7 +23,7 @@
 namespace Rcpp{
 namespace internal{
 
-	template <int RTYPE, template <class> class StoragePolicy>
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy>
 	class generic_proxy : public GenericProxy< generic_proxy<RTYPE, StoragePolicy> > {
 		public:
 			typedef typename ::Rcpp::Vector<RTYPE, StoragePolicy> VECTOR ;

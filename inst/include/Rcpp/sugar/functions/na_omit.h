@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-    template <int RTYPE, bool NA, typename T>
+    template <SEXPTYPE RTYPE, bool NA, typename T>
     Vector<RTYPE> na_omit_impl(const T& x, Rcpp::traits::false_type ) {
         R_xlen_t n = x.size() ;
         R_xlen_t n_out = n - sum( is_na(x) ) ;
@@ -40,7 +40,7 @@ namespace sugar{
         return out ;
     }
 
-    template <int RTYPE, bool NA, typename T>
+    template <SEXPTYPE RTYPE, bool NA, typename T>
     Vector<RTYPE> na_omit_impl(const T& x, Rcpp::traits::true_type ) {
         R_xlen_t n = x.size() ;
         R_xlen_t n_out = n - sum( is_na(x) ) ;
@@ -71,7 +71,7 @@ namespace sugar{
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Vector<RTYPE> na_omit( const VectorBase<RTYPE,NA,T>& t){
 	return sugar::na_omit_impl<RTYPE,NA,T>(
 	    t.get_ref(),

@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-	template <int RTYPE,bool NA>
+	template <SEXPTYPE RTYPE,bool NA>
 	class not_ {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -33,7 +33,7 @@ namespace sugar{
 			return Rcpp::traits::is_na<RTYPE>(x) ? NA_LOGICAL : (x ? FALSE : TRUE) ;
 		}
 	} ;
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	class not_<RTYPE,false> {
 	public:
 		typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -72,7 +72,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class Not_Vector : public Rcpp::VectorBase<LGLSXP,NA, Not_Vector<RTYPE,NA,T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -96,7 +96,7 @@ namespace sugar{
 }
 }
 
-template <int RTYPE,bool NA, typename T>
+template <SEXPTYPE RTYPE,bool NA, typename T>
 inline Rcpp::sugar::Not_Vector< RTYPE , NA , T >
 operator!(
 	const Rcpp::VectorBase<RTYPE,NA,T>& x

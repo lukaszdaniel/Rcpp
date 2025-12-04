@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace traits{
 
-	template <int RTYPE> struct is_trivial  : public true_type{} ;
+	template <SEXPTYPE RTYPE> struct is_trivial  : public true_type{} ;
 	template <> struct is_trivial<VECSXP>   : public false_type{} ;
 	template <> struct is_trivial<EXPRSXP>  : public false_type{} ;
 

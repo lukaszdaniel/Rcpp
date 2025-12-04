@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Rev : public Rcpp::VectorBase< RTYPE ,NA, Rev<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -46,7 +46,7 @@ private:
 
 } // sugar
 
-template <int RTYPE,bool NA, typename T>
+template <SEXPTYPE RTYPE,bool NA, typename T>
 inline sugar::Rev<RTYPE,NA,T> rev( const VectorBase<RTYPE,NA,T>& t){
 	return sugar::Rev<RTYPE,NA,T>( t ) ;
 }

@@ -31,22 +31,22 @@ namespace median_detail {
 // and Rcpp::String for STRSXP
 // also need to return NA_REAL for 
 // integer vector yielding NA result
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct result {
     typedef typename Rcpp::traits::storage_type<RTYPE>::type type;
-    enum { rtype = RTYPE };
+    static constexpr SEXPTYPE rtype = RTYPE;
 };
 
 template <>
 struct result<INTSXP> {
     typedef double type;
-    enum { rtype = REALSXP };
+    static constexpr SEXPTYPE rtype = REALSXP;
 };
 
 template <>
 struct result<STRSXP> {
     typedef Rcpp::String type;
-    enum { rtype = STRSXP };
+    static constexpr SEXPTYPE rtype = STRSXP;
 };
 
 // std::nth_element and std::max_element don't 
@@ -83,7 +83,7 @@ inline Rcomplex half(Rcomplex lhs) {
 } // median_detail
 
 // base case
-template <int RTYPE, bool NA, typename T, bool NA_RM = false>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool NA_RM = false>
 class Median {
 public:
     typedef typename median_detail::result<RTYPE>::type result_type;
@@ -121,7 +121,7 @@ public:
 };
 
 // na.rm = TRUE
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Median<RTYPE, NA, T, true> {
 public:
     typedef typename median_detail::result<RTYPE>::type result_type;
@@ -155,7 +155,7 @@ public:
 };
 
 // NA = false
-template <int RTYPE, typename T, bool NA_RM>
+template <SEXPTYPE RTYPE, typename T, bool NA_RM>
 class Median<RTYPE, false, T, NA_RM> {
 public:
     typedef typename median_detail::result<RTYPE>::type result_type;
@@ -278,7 +278,7 @@ public:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline typename sugar::median_detail::result<RTYPE>::type
 median(const Rcpp::VectorBase<RTYPE, NA, T>& x, bool na_rm = false) {
     if (!na_rm) return sugar::Median<RTYPE, NA, T, false>(x);

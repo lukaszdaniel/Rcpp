@@ -29,7 +29,7 @@
 namespace Rcpp{
 namespace traits{
 
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	struct expands_to_logical__impl{} ;
 
 	template <>

@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA>
+template <SEXPTYPE RTYPE, bool NA>
 struct clamp_operator{
     typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 
@@ -51,7 +51,7 @@ struct clamp_operator<REALSXP,true> {
 
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool NA, typename T
 	>
 class Clamp_Primitive_Vector_Primitive : public VectorBase<
@@ -79,7 +79,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::Clamp_Primitive_Vector_Primitive<RTYPE,NA,T>
 clamp(
 	typename Rcpp::traits::storage_type<RTYPE>::type lhs,

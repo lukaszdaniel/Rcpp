@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::Vector<RTYPE>
 as_vector__impl( MatrixBase<RTYPE,NA,T>& t, Rcpp::traits::false_type ){
     T& ref = t.get_ref() ;
@@ -39,7 +39,7 @@ as_vector__impl( MatrixBase<RTYPE,NA,T>& t, Rcpp::traits::false_type ){
     return out ;
 }
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::Vector<RTYPE>
 as_vector__impl( MatrixBase<RTYPE,NA,T>& t, Rcpp::traits::true_type ){
     Matrix<RTYPE>& ref = t.get_ref() ;
@@ -50,7 +50,7 @@ as_vector__impl( MatrixBase<RTYPE,NA,T>& t, Rcpp::traits::true_type ){
 
 } // internal
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::Vector<RTYPE>
 as_vector( const MatrixBase<RTYPE,NA,T>& t ){
     return internal::as_vector__impl( const_cast< MatrixBase<RTYPE,NA,T>& >(t), typename Rcpp::traits::same_type< T , Matrix<RTYPE> >() ) ;

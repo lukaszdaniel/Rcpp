@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE, template <class> class StoragePolicy = PreserveStorage >
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage >
 class Matrix : public Vector<RTYPE, StoragePolicy>, public MatrixBase<RTYPE, true, Matrix<RTYPE,StoragePolicy> > {
     int nrows ;
 
@@ -248,7 +248,7 @@ inline std::ostream &operator<<(std::ostream & s, const Matrix<REALSXP, StorageP
 
 #ifndef RCPP_NO_SUGAR
 #define RCPP_GENERATE_MATRIX_SCALAR_OPERATOR(__OPERATOR__)                                                                    \
-    template <int RTYPE, template <class> class StoragePolicy, typename T >                                                   \
+    template <SEXPTYPE RTYPE, template <class> class StoragePolicy, typename T >                                                   \
     inline typename traits::enable_if< traits::is_convertible< typename traits::remove_const_and_reference< T >::type,        \
          typename Matrix<RTYPE, StoragePolicy>::stored_type >::value, Matrix<RTYPE, StoragePolicy> >::type                    \
              operator __OPERATOR__ (const Matrix<RTYPE, StoragePolicy> &lhs, const T &rhs) {                                  \
@@ -265,7 +265,7 @@ RCPP_GENERATE_MATRIX_SCALAR_OPERATOR(/)
 #undef RCPP_GENERATE_MATRIX_SCALAR_OPERATOR
 
 #define RCPP_GENERATE_SCALAR_MATRIX_OPERATOR(__OPERATOR__)                                                                    \
-    template <int RTYPE, template <class> class StoragePolicy, typename T >                                                   \
+    template <SEXPTYPE RTYPE, template <class> class StoragePolicy, typename T >                                                   \
     inline typename traits::enable_if< traits::is_convertible< typename traits::remove_const_and_reference< T >::type,        \
          typename Matrix<RTYPE, StoragePolicy>::stored_type >::value, Matrix<RTYPE, StoragePolicy> >::type                    \
              operator __OPERATOR__ (const T &lhs, const Matrix<RTYPE, StoragePolicy> &rhs) {                                  \
@@ -375,7 +375,7 @@ inline std::ostream &operator<<(std::ostream & s, const Matrix<STRSXP, StoragePo
     return s;
 }
 
-template<int RTYPE, template <class> class StoragePolicy >
+template<SEXPTYPE RTYPE, template <class> class StoragePolicy >
 inline std::ostream &operator<<(std::ostream & s, const Matrix<RTYPE, StoragePolicy> & rhs) {
     typedef Matrix<RTYPE, StoragePolicy> MATRIX;
 
@@ -402,7 +402,7 @@ inline std::ostream &operator<<(std::ostream & s, const Matrix<RTYPE, StoragePol
     return s;
 }
 
-template<int RTYPE, template <class> class StoragePolicy >
+template<SEXPTYPE RTYPE, template <class> class StoragePolicy >
 Matrix<RTYPE, StoragePolicy> tranpose_impl(const Matrix<RTYPE, StoragePolicy> & x) {
     typedef Matrix<RTYPE, StoragePolicy> MATRIX;
     typedef Vector<RTYPE, StoragePolicy> VECTOR;

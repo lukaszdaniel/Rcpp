@@ -40,7 +40,7 @@ private:
     const HASH& hash ;
 } ;
 
-template <int RTYPE, typename TABLE_T>
+template <SEXPTYPE RTYPE, typename TABLE_T>
 class In {
     Vector<RTYPE> vec ;
     typedef sugar::IndexHash<RTYPE> HASH ;
@@ -61,19 +61,19 @@ public:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Vector<RTYPE> unique( const VectorBase<RTYPE,NA,T>& t ){
 	Vector<RTYPE> vec(t) ;
 	sugar::IndexHash<RTYPE> hash(vec) ;
 	hash.fill() ;
 	return hash.keys() ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Vector<RTYPE> sort_unique( const VectorBase<RTYPE,NA,T>& t , bool decreasing = false){
 	return unique<RTYPE,NA,T>( t ).sort(decreasing) ;
 }
 
-template <int RTYPE, bool NA, typename T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool RHS_NA, typename RHS_T>
 inline LogicalVector in( const VectorBase<RTYPE,NA,T>& x, const VectorBase<RTYPE,RHS_NA,RHS_T>& table ){
     typedef VectorBase<RTYPE,RHS_NA,RHS_T> TABLE_T ;
     return sugar::In<RTYPE, TABLE_T>(table).get( x.get_ref() ) ;

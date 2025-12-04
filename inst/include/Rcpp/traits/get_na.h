@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace traits{
 
-template<int RTYPE>
+template<SEXPTYPE RTYPE>
 typename storage_type<RTYPE>::type get_na() ;
 
 template<>

@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <int RTYPE, typename VECTOR>
+template <SEXPTYPE RTYPE, typename VECTOR>
 class SEXP_Iterator {
 public:
 		typedef const SEXP& reference ;

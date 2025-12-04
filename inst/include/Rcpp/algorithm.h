@@ -143,7 +143,7 @@ namespace helpers {
     template<>
     struct rtype_helper< double > {
         typedef double type;
-        static constexpr int RTYPE = REALSXP;
+        static constexpr SEXPTYPE RTYPE = REALSXP;
         static inline double NA() { return NA_REAL; }
         static inline constexpr double ZERO() { return 0.0; }
         static inline constexpr double ONE() { return 1.0; }
@@ -152,7 +152,7 @@ namespace helpers {
     template<>
     struct rtype_helper< int > {
         typedef int type;
-        static constexpr int RTYPE = INTSXP;
+        static constexpr SEXPTYPE RTYPE = INTSXP;
         static inline int NA() { return NA_INTEGER; }
         static inline constexpr int ZERO() { return 0; }
         static inline constexpr int ONE() { return 1; }
@@ -162,7 +162,7 @@ namespace helpers {
     struct rtype {
         typedef typename rtype_helper< typename ctype< T >::type >::type type;
         typedef rtype_helper< typename ctype< T >::type > helper_type;
-        static constexpr int RTYPE = helper_type::RTYPE;
+        static constexpr SEXPTYPE RTYPE = helper_type::RTYPE;
         static inline T NA() { return helper_type::NA(); }
         static inline constexpr T ZERO() { return helper_type::ZERO(); }
         static inline constexpr T ONE() { return helper_type::ONE(); }

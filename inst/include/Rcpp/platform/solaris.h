@@ -22,43 +22,43 @@ namespace traits{
   template <> struct is_convertible<Range,SEXP> : public false_type{} ;
 
   #if !defined(RCPP_NO_SUGAR)
-  template <int RTYPE, bool NA, typename T>
+  template <SEXPTYPE RTYPE, bool NA, typename T>
   struct is_convertible< sugar::Minus_Vector_Primitive< RTYPE, NA, T >, SEXP> : public false_type{} ;
 
-  template <int RTYPE, bool NA, typename T>
+  template <SEXPTYPE RTYPE, bool NA, typename T>
   struct is_convertible< sugar::Plus_Vector_Primitive< RTYPE, NA, T >, SEXP> : public false_type{} ;
 
-  template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+  template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
   struct is_convertible< sugar::Plus_Vector_Vector< RTYPE, LHS_NA, LHS_T, RHS_NA, RHS_T >, SEXP> : public false_type{} ;
 
-  template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+  template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
   struct is_convertible< sugar::Minus_Vector_Vector< RTYPE, LHS_NA, LHS_T, RHS_NA, RHS_T >, SEXP> : public false_type{} ;
 
-  template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+  template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
   struct is_convertible< sugar::Times_Vector_Vector< RTYPE, LHS_NA, LHS_T, RHS_NA, RHS_T >, SEXP> : public false_type{} ;
 
-  template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+  template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
   struct is_convertible< sugar::Divides_Vector_Vector< RTYPE, LHS_NA, LHS_T, RHS_NA, RHS_T >, SEXP> : public false_type{} ;
 
   template <
-	  int RTYPE,
+	  SEXPTYPE RTYPE,
 	  bool COND_NA, typename COND_T,
 	  bool RHS_NA , typename RHS_T
 	>
 	struct is_convertible< sugar::IfElse_Primitive_Vector<RTYPE,COND_NA,COND_T,RHS_NA,RHS_T> , SEXP > : public false_type{} ;
 
 	template <
-	  int RTYPE,
+	  SEXPTYPE RTYPE,
 	  bool COND_NA, typename COND_T
 	>
 	struct is_convertible< sugar::IfElse_Primitive_Primitive<RTYPE,COND_NA,COND_T>, SEXP > : public false_type{} ;
 
   #endif
 
-  template <int RTYPE>
+  template <SEXPTYPE RTYPE>
   struct is_convertible< MatrixRow<RTYPE>, SEXP> : public false_type{} ;
 
-  template <int RTYPE>
+  template <SEXPTYPE RTYPE>
   struct is_convertible< MatrixColumn<RTYPE>, SEXP> : public false_type{} ;
 
 }

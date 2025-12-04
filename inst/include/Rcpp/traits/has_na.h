@@ -32,7 +32,7 @@ namespace traits{
  * This is false by default and specialized for all types that do
  * have the concept
  */
-template<int RTYPE> struct has_na : public false_type{} ;
+template<SEXPTYPE RTYPE> struct has_na : public false_type{} ;
 
 /**
  * integer vectors support missing values

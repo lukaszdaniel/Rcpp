@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <bool NA, int RTYPE>
+template <bool NA, SEXPTYPE RTYPE>
 class sign__impl{
 public:
 	typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -34,7 +34,7 @@ public:
 	}
 } ;
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class sign__impl<false,RTYPE>{
 public:
 	typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -44,7 +44,7 @@ public:
 } ;
 
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Sign : public Rcpp::VectorBase< INTSXP,NA, Sign<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;

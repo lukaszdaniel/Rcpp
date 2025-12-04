@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Head : public Rcpp::VectorBase< RTYPE ,NA, Head<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -49,7 +49,7 @@ private:
 
 } // sugar
 
-template <int RTYPE,bool NA, typename T>
+template <SEXPTYPE RTYPE,bool NA, typename T>
 inline sugar::Head<RTYPE,NA,T> head(
 	const VectorBase<RTYPE,NA,T>& t,
 	R_xlen_t n

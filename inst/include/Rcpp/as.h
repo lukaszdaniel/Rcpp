@@ -33,7 +33,7 @@ namespace Rcpp {
                 const char* fmt = "Expecting a single value: [extent=%i].";
                 throw ::Rcpp::not_compatible(fmt, ::Rf_length(x));
             }
-            const int RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype;
+            const SEXPTYPE RTYPE = ::Rcpp::traits::r_sexptype_traits<T>::rtype;
             Shield<SEXP> y(r_cast<RTYPE>(x));
             typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE;
             T res = caster<STORAGE,T>(*r_vector_start<RTYPE>(y));

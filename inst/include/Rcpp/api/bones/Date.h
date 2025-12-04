@@ -35,7 +35,7 @@ namespace Rcpp {
 			typedef r_type_primitive_tag r_category ;
 		} ;
 		template<> struct r_sexptype_traits<Rcpp::Date>{
-			enum{ rtype = REALSXP } ;
+			static constexpr SEXPTYPE rtype = REALSXP;
 		} ;
 	}
 

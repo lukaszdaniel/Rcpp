@@ -37,7 +37,7 @@ private:
     HASH& hash ;
 } ;
 
-template <typename HASH, int RTYPE>
+template <typename HASH, SEXPTYPE RTYPE>
 class Grabber{
 public:
     Grabber( IntegerVector& res_, CharacterVector& names_ ) : res(res_), names(names_), index(0){}
@@ -54,7 +54,7 @@ private:
     R_xlen_t index ;
 } ;
 
-template <int RTYPE, typename TABLE_T>
+template <SEXPTYPE RTYPE, typename TABLE_T>
 class Table {
 public:
     typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -89,7 +89,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline IntegerVector table( const VectorBase<RTYPE,NA,T>& x ){
     return sugar::Table<RTYPE,T>(x.get_ref()) ;
 }

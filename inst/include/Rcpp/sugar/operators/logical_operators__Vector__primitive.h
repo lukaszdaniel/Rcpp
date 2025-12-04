@@ -24,7 +24,7 @@
 #define Rcpp__sugar__logical_operators__Vector__primitive_h
 
 /* Vector < primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::less<RTYPE>,
@@ -44,7 +44,7 @@ operator<(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::less<RTYPE>,
@@ -68,7 +68,7 @@ operator>(
 
 
 /* Vector > primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::greater<RTYPE>,
@@ -88,7 +88,7 @@ operator>(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::greater<RTYPE>,
@@ -112,7 +112,7 @@ operator<(
 
 
 /* Vector <= primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::less_or_equal<RTYPE>,
@@ -132,7 +132,7 @@ operator<=(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::less_or_equal<RTYPE>,
@@ -157,7 +157,7 @@ operator>=(
 
 
 /* Vector >= primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::greater_or_equal<RTYPE>,
@@ -177,7 +177,7 @@ operator>=(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::greater_or_equal<RTYPE>,
@@ -201,7 +201,7 @@ operator<=(
 
 
 /* Vector == primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::equal<RTYPE>,
@@ -221,7 +221,7 @@ operator==(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::equal<RTYPE>,
@@ -245,7 +245,7 @@ operator==(
 
 
 /* Vector != primitive */
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::not_equal<RTYPE>,
@@ -265,7 +265,7 @@ operator!=(
 			lhs, rhs
 		) ;
 }
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline Rcpp::sugar::Comparator_With_One_Value<
 	RTYPE ,
 	Rcpp::sugar::not_equal<RTYPE>,

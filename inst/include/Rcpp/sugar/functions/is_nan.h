@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename VEC_TYPE>
+template <SEXPTYPE RTYPE, bool NA, typename VEC_TYPE>
 class IsNaN : public ::Rcpp::VectorBase< LGLSXP, false, IsNaN<RTYPE,NA,VEC_TYPE> > {
 public:
 
@@ -45,7 +45,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::IsNaN<RTYPE,NA,T> is_nan( const Rcpp::VectorBase<RTYPE,NA,T>& t){
 	return sugar::IsNaN<RTYPE,NA,T>( t.get_ref() ) ;
 }

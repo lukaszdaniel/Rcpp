@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Var : public Lazy< double , Var<RTYPE,NA,T> > {
 public:
     typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;

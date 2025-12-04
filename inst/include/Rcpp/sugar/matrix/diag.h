@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Diag_Extractor : public Rcpp::VectorBase< RTYPE ,NA, Diag_Extractor<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::MatrixBase<RTYPE,NA,T> MAT_TYPE ;
@@ -48,7 +48,7 @@ private:
 } ;
 
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class Diag_Maker : public Rcpp::MatrixBase< RTYPE ,NA, Diag_Maker<RTYPE,NA,T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;

@@ -27,9 +27,9 @@ namespace Rcpp{
 namespace sugar{
 
 template <
-    int RTYPE_1, bool NA_1, typename T_1,
-    int RTYPE_2, bool NA_2, typename T_2,
-    int RTYPE_3, bool NA_3, typename T_3,
+    SEXPTYPE RTYPE_1, bool NA_1, typename T_1,
+    SEXPTYPE RTYPE_2, bool NA_2, typename T_2,
+    SEXPTYPE RTYPE_3, bool NA_3, typename T_3,
     typename Function
 >
 class Mapply_3 : public VectorBase<
@@ -68,9 +68,9 @@ private:
 } // sugar
 
 template <
-    int RTYPE_1, bool NA_1, typename T_1,
-    int RTYPE_2, bool NA_2, typename T_2,
-    int RTYPE_3, bool NA_3, typename T_3,
+    SEXPTYPE RTYPE_1, bool NA_1, typename T_1,
+    SEXPTYPE RTYPE_2, bool NA_2, typename T_2,
+    SEXPTYPE RTYPE_3, bool NA_3, typename T_3,
     typename Function
     >
 inline sugar::Mapply_3<RTYPE_1,NA_1,T_1,RTYPE_2,NA_2,T_2,RTYPE_3, NA_3,T_3,Function>

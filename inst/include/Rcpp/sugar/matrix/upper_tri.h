@@ -26,7 +26,7 @@
 namespace Rcpp {
 namespace sugar {
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class UpperTri : public MatrixBase<LGLSXP, false, UpperTri<RTYPE, NA, T> > {
 public:
     typedef Rcpp::MatrixBase<RTYPE, NA, T> MatBase;
@@ -58,7 +58,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline sugar::UpperTri<RTYPE, NA, T>
 upper_tri(const Rcpp::MatrixBase<RTYPE, NA, T>& lhs, bool diag = false) {
     return sugar::UpperTri<RTYPE, NA, T>(lhs, diag);

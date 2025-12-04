@@ -32,7 +32,7 @@ namespace traits{
  *
  * The default is SEXP, which works for VECSXP, EXPRSXP and STRSXP
  */
-template<int RTYPE> struct storage_type{
+template<SEXPTYPE RTYPE> struct storage_type{
 	typedef SEXP type ;
 } ;
 

@@ -27,7 +27,7 @@ namespace Rcpp{
     namespace traits{
 
         // default for complex,
-        template <int RTYPE>
+        template <SEXPTYPE RTYPE>
         bool is_finite( typename storage_type<RTYPE>::type);
 
         template <>

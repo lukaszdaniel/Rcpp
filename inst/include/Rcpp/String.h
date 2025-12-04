@@ -672,17 +672,17 @@ namespace Rcpp {
 
     namespace traits{
         template<> struct r_type_traits<Rcpp::String>{ typedef r_type_RcppString_tag r_category; };
-        template<> struct r_sexptype_traits<Rcpp::String>{ enum{ rtype = STRSXP }; };
+        template<> struct r_sexptype_traits<Rcpp::String>{ static constexpr SEXPTYPE rtype = STRSXP; };
     }
 
     namespace internal {
-        template <int RTYPE, template <class> class StoragePolicy>
+        template <SEXPTYPE RTYPE, template <class> class StoragePolicy>
         string_proxy<RTYPE, StoragePolicy>& string_proxy<RTYPE, StoragePolicy>::operator=(const String& s) {
             set(s.get_sexp());
             return *this;
         }
 
-        template <int RTYPE>
+        template <SEXPTYPE RTYPE>
         SEXP string_element_converter<RTYPE>::get(const Rcpp::String& input) {
             RCPP_DEBUG("string_element_converter::get< Rcpp::String >()")
             return input.get_sexp();
@@ -693,7 +693,7 @@ namespace Rcpp {
             return s.get_sexp();
         }
 
-        template <int RTYPE, template <class> class StoragePolicy>
+        template <SEXPTYPE RTYPE, template <class> class StoragePolicy>
         template <typename T>
         string_proxy<RTYPE, StoragePolicy>& string_proxy<RTYPE, StoragePolicy>::operator+=(const T& rhs) {
             String tmp = get();

@@ -28,7 +28,7 @@ namespace sugar{
 // NOTE: caching the previous value so that we only have to fetch the
 //       value once only works because we process the object from left to
 //       right
-template <int RTYPE, bool LHS_NA, typename LHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T>
 class Diff : public Rcpp::VectorBase< RTYPE, LHS_NA , Diff<RTYPE,LHS_NA,LHS_T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,LHS_NA,LHS_T> LHS_TYPE ;
@@ -94,7 +94,7 @@ private:
 	mutable R_xlen_t previous_index ;
 } ;
 
-template <int RTYPE, typename LHS_T>
+template <SEXPTYPE RTYPE, typename LHS_T>
 class Diff<RTYPE,false,LHS_T> : public Rcpp::VectorBase< RTYPE, false , Diff<RTYPE,false,LHS_T> > {
 public:
 	typedef typename Rcpp::VectorBase<RTYPE,false,LHS_T> LHS_TYPE ;

@@ -24,7 +24,7 @@
 #define Rcpp__sugar__logical_operators__Vector__Vector_h
 
 /* Vector < Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::less<RTYPE>,
@@ -45,7 +45,7 @@ operator<(
 		) ;
 }
 /* Vector > Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::greater<RTYPE>,
@@ -66,7 +66,7 @@ operator>(
 		) ;
 }
 /* Vector <= Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::less_or_equal<RTYPE>,
@@ -87,7 +87,7 @@ operator<=(
 		) ;
 }
 /* Vector >= Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::greater_or_equal<RTYPE>,
@@ -108,7 +108,7 @@ operator>=(
 		) ;
 }
 /* Vector == Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::equal<RTYPE>,
@@ -129,7 +129,7 @@ operator==(
 		) ;
 }
 /* Vector != Vector */
-template <int RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA,typename LHS_T,bool RHS_NA, typename RHS_T>
 inline Rcpp::sugar::Comparator<
 	RTYPE ,
 	Rcpp::sugar::not_equal<RTYPE>,

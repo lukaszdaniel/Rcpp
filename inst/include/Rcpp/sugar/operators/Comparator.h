@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, typename Operator, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, typename Operator, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 class Comparator :
 	public ::Rcpp::VectorBase< LGLSXP, true, Comparator<RTYPE,Operator,LHS_NA,LHS_T,RHS_NA,RHS_T> > {
 
@@ -56,7 +56,7 @@ private:
 
 
 
-template <int RTYPE, typename Operator, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, typename Operator, typename LHS_T, bool RHS_NA, typename RHS_T>
 class Comparator<RTYPE,Operator,false,LHS_T,RHS_NA,RHS_T> :
 	public ::Rcpp::VectorBase< LGLSXP, true, Comparator<RTYPE,Operator,false,LHS_T,RHS_NA,RHS_T> > {
 
@@ -84,7 +84,7 @@ private:
 } ;
 
 
-template <int RTYPE, typename Operator, typename LHS_T, typename RHS_T>
+template <SEXPTYPE RTYPE, typename Operator, typename LHS_T, typename RHS_T>
 class Comparator<RTYPE,Operator,false,LHS_T,false,RHS_T> :
 	public ::Rcpp::VectorBase< LGLSXP, true, Comparator<RTYPE,Operator,false,LHS_T,false,RHS_T> > {
 

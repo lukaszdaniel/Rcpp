@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-    template <int RTYPE, bool NA, typename T>
+    template <SEXPTYPE RTYPE, bool NA, typename T>
     class Range {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -54,7 +54,7 @@ namespace sugar{
     } ;
 
     // version for NA = false
-    template <int RTYPE, typename T>
+    template <SEXPTYPE RTYPE, typename T>
     class Range<RTYPE,false,T> {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -82,7 +82,7 @@ namespace sugar{
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 sugar::Range<RTYPE,NA,T> range( const VectorBase<RTYPE,NA,T>& x){
     return sugar::Range<RTYPE,NA,T>(x.get_ref()) ;
 }

@@ -32,7 +32,7 @@ namespace Rcpp {
             setClass();
         }
 
-        template <int RTYPE, bool NA, typename VEC>
+        template <SEXPTYPE RTYPE, bool NA, typename VEC>
         newDateVector(const VectorBase<RTYPE,NA,VEC>& vec) : NumericVector(vec) {
             setClass();
         }

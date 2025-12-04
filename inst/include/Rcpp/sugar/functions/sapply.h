@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T, typename Function, bool NO_CONVERSION>
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function, bool NO_CONVERSION>
 class Sapply : public VectorBase<
 	Rcpp::traits::r_sexptype_traits<
 		typename ::Rcpp::traits::result_of<Function, T>::type
@@ -35,7 +35,7 @@ class Sapply : public VectorBase<
 > {
 public:
 	typedef typename ::Rcpp::traits::result_of<Function, T>::type result_type ;
-	const static int RESULT_R_TYPE =
+	const static SEXPTYPE RESULT_R_TYPE =
 		Rcpp::traits::r_sexptype_traits<result_type>::rtype ;
 
 	typedef Rcpp::VectorBase<RTYPE,NA,T> VEC ;
@@ -62,7 +62,7 @@ private:
 } ;
 
 
-template <int RTYPE, bool NA, typename T, typename Function>
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function>
 class Sapply<RTYPE,NA,T,Function,true> : public VectorBase<
 	Rcpp::traits::r_sexptype_traits<
 		typename ::Rcpp::traits::result_of<Function, T>::type
@@ -72,7 +72,7 @@ class Sapply<RTYPE,NA,T,Function,true> : public VectorBase<
 > {
 public:
 	typedef typename ::Rcpp::traits::result_of<Function, T>::type result_type ;
-	const static int RESULT_R_TYPE =
+	const static SEXPTYPE RESULT_R_TYPE =
 		Rcpp::traits::r_sexptype_traits<result_type>::rtype ;
 
 	typedef Rcpp::VectorBase<RTYPE,NA,T> VEC ;
@@ -98,7 +98,7 @@ private:
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T, typename Function >
+template <SEXPTYPE RTYPE, bool NA, typename T, typename Function >
 inline sugar::Sapply<
     RTYPE,NA,T,Function,
     traits::same_type<

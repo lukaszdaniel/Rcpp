@@ -82,36 +82,36 @@ inline void set_nan(Rcomplex* x) {
 }
 
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct RowSumsReturn {
     typedef Vector<RTYPE> type;
-    enum { rtype = RTYPE };
+    static constexpr SEXPTYPE rtype = RTYPE;
 };
 
 template <>
 struct RowSumsReturn<LGLSXP> {
     typedef Vector<INTSXP> type;
-    enum { rtype = INTSXP };
+    static constexpr SEXPTYPE rtype = INTSXP;
 };
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct ColSumsReturn
     : public RowSumsReturn<RTYPE> {};
 
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct RowMeansReturn {
     typedef Vector<REALSXP> type;
-    enum { rtype = REALSXP };
+    static constexpr SEXPTYPE rtype = REALSXP;
 };
 
 template <>
 struct RowMeansReturn<CPLXSXP> {
     typedef Vector<CPLXSXP> type;
-    enum { rtype = CPLXSXP };
+    static constexpr SEXPTYPE rtype = CPLXSXP;
 };
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 struct ColMeansReturn
     : public RowMeansReturn<RTYPE> {};
 
@@ -124,7 +124,7 @@ struct ColMeansReturn
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T, bool NA_RM = false>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool NA_RM = false>
 class RowSumsImpl :
     public Lazy<typename detail::RowSumsReturn<RTYPE>::type, RowSumsImpl<RTYPE, NA, T, NA_RM> > {
 private:
@@ -222,7 +222,7 @@ ROW_SUMS_IMPL_KEEPNA(INTSXP)
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class RowSumsImpl<RTYPE, NA, T, true> :
     public Lazy<typename detail::RowSumsReturn<RTYPE>::type, RowSumsImpl<RTYPE, NA, T, true> > {
 private:
@@ -306,7 +306,7 @@ ROW_SUMS_IMPL_RMNA(INTSXP)
 //      Input with template parameter NA = false
 //      RowSumsImpl<..., NA_RM = false>
 //
-template <int RTYPE, typename T, bool NA_RM>
+template <SEXPTYPE RTYPE, typename T, bool NA_RM>
 class RowSumsImpl<RTYPE, false, T, NA_RM>
     : public RowSumsImpl<RTYPE, false, T, false> {};
 
@@ -316,7 +316,7 @@ class RowSumsImpl<RTYPE, false, T, NA_RM>
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T, bool NA_RM = false>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool NA_RM = false>
 class ColSumsImpl :
     public Lazy<typename detail::ColSumsReturn<RTYPE>::type, ColSumsImpl<RTYPE, NA, T, NA_RM> > {
 private:
@@ -406,7 +406,7 @@ COL_SUMS_IMPL_KEEPNA(INTSXP)
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class ColSumsImpl<RTYPE, NA, T, true> :
     public Lazy<typename detail::ColSumsReturn<RTYPE>::type, ColSumsImpl<RTYPE, NA, T, true> > {
 private:
@@ -490,7 +490,7 @@ COL_SUMS_IMPL_RMNA(INTSXP)
 //      Input with template parameter NA = false
 //      ColSumsImpl<..., NA_RM = false>
 //
-template <int RTYPE, typename T, bool NA_RM>
+template <SEXPTYPE RTYPE, typename T, bool NA_RM>
 class ColSumsImpl<RTYPE, false, T, NA_RM>
     : public ColSumsImpl<RTYPE, false, T, false> {};
 
@@ -503,7 +503,7 @@ class ColSumsImpl<RTYPE, false, T, NA_RM>
 //      All RowMeans and ColMeans variants use a single-pass
 //      mean calculation as in array.c
 //
-template <int RTYPE, bool NA, typename T, bool NA_RM = false>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool NA_RM = false>
 class RowMeansImpl :
     public Lazy<typename detail::RowMeansReturn<RTYPE>::type, RowMeansImpl<RTYPE, NA, T, NA_RM> > {
 private:
@@ -599,7 +599,7 @@ ROW_MEANS_IMPL_KEEPNA(INTSXP)
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class RowMeansImpl<RTYPE, NA, T, true> :
     public Lazy<typename detail::RowMeansReturn<RTYPE>::type, RowMeansImpl<RTYPE, NA, T, true> > {
 private:
@@ -702,7 +702,7 @@ ROW_MEANS_IMPL_RMNA(INTSXP)
 //      Input with template parameter NA = false
 //      RowMeansImpl<..., NA_RM = false>
 //
-template <int RTYPE, typename T, bool NA_RM>
+template <SEXPTYPE RTYPE, typename T, bool NA_RM>
 class RowMeansImpl<RTYPE, false, T, NA_RM>
     : public RowMeansImpl<RTYPE, false, T, false> {};
 
@@ -712,7 +712,7 @@ class RowMeansImpl<RTYPE, false, T, NA_RM>
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T, bool NA_RM = false>
+template <SEXPTYPE RTYPE, bool NA, typename T, bool NA_RM = false>
 class ColMeansImpl :
     public Lazy<typename detail::ColMeansReturn<RTYPE>::type, ColMeansImpl<RTYPE, NA, T, NA_RM> > {
 private:
@@ -808,7 +808,7 @@ COL_MEANS_IMPL_KEEPNA(INTSXP)
 //      default input
 //      default output
 //
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class ColMeansImpl<RTYPE, NA, T, true> :
     public Lazy<typename detail::ColMeansReturn<RTYPE>::type, ColMeansImpl<RTYPE, NA, T, true> > {
 private:
@@ -911,7 +911,7 @@ COL_MEANS_IMPL_RMNA(INTSXP)
 //      Input with template parameter NA = false
 //      ColMeansImpl<..., NA_RM = false>
 //
-template <int RTYPE, typename T, bool NA_RM>
+template <SEXPTYPE RTYPE, typename T, bool NA_RM>
 class ColMeansImpl<RTYPE, false, T, NA_RM>
     : public ColMeansImpl<RTYPE, false, T, false> {};
 
@@ -919,7 +919,7 @@ class ColMeansImpl<RTYPE, false, T, NA_RM>
 } // sugar
 
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline typename sugar::detail::RowSumsReturn<RTYPE>::type
 rowSums(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     if (!na_rm) {
@@ -928,7 +928,7 @@ rowSums(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     return sugar::RowSumsImpl<RTYPE, NA, T, true>(x);
 }
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline typename sugar::detail::ColSumsReturn<RTYPE>::type
 colSums(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     if (!na_rm) {
@@ -937,7 +937,7 @@ colSums(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     return sugar::ColSumsImpl<RTYPE, NA, T, true>(x);
 }
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline typename sugar::detail::RowMeansReturn<RTYPE>::type
 rowMeans(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     if (!na_rm) {
@@ -946,7 +946,7 @@ rowMeans(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     return sugar::RowMeansImpl<RTYPE, NA, T, true>(x);
 }
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline typename sugar::detail::ColMeansReturn<RTYPE>::type
 colMeans(const MatrixBase<RTYPE, NA, T>& x, bool na_rm = false) {
     if (!na_rm) {

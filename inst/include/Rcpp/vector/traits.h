@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace traits{
 
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage >
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage >
 	class r_vector_cache{
 	public:
 		typedef typename ::Rcpp::Vector<RTYPE, StoragePolicy> VECTOR ;
@@ -65,7 +65,7 @@ namespace traits{
 		R_xlen_t size ;
 	} ;
 
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage>
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage>
 	class proxy_cache{
 	public:
 		typedef typename ::Rcpp::Vector<RTYPE, StoragePolicy> VECTOR ;
@@ -101,7 +101,7 @@ namespace traits{
 	} ;
 
 	// regular types for INTSXP, REALSXP, ...
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage>
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage>
 	struct r_vector_cache_type {
 	    typedef r_vector_cache<RTYPE, StoragePolicy> type ;
 	} ;

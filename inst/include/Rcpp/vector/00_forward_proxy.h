@@ -25,25 +25,25 @@
 namespace Rcpp{
 
 namespace internal{
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class string_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class const_string_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class generic_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class const_generic_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class simple_name_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class string_name_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> class generic_name_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class string_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class const_string_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class generic_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class const_generic_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class simple_name_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class string_name_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> class generic_name_proxy ;
 }
 
 namespace traits {
-    template <int RTYPE, template <class> class StoragePolicy> struct r_vector_cache_type ;
-	template <int RTYPE, template <class> class StoragePolicy> class r_vector_cache ;
+    template <SEXPTYPE RTYPE, template <class> class StoragePolicy> struct r_vector_cache_type ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy> class r_vector_cache ;
 
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_name_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_proxy ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_const_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_name_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_proxy ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_const_proxy ;
 
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_iterator ;
-	template <int RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_const_iterator ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_iterator ;
+	template <SEXPTYPE RTYPE, template <class> class StoragePolicy = PreserveStorage> struct r_vector_const_iterator ;
 
 }
 }

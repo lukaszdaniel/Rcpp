@@ -26,7 +26,7 @@ namespace Rcpp{
 namespace sugar{
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool LHS_NA , typename LHS_T,
 	bool RHS_NA , typename RHS_T
@@ -69,7 +69,7 @@ private:
 } ;
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	typename COND_T,
 	bool LHS_NA , typename LHS_T,
 	bool RHS_NA , typename RHS_T
@@ -112,7 +112,7 @@ private:
 /* ifelse( cond, primitive, Vector ) */
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool RHS_NA , typename RHS_T
 	>
@@ -150,7 +150,7 @@ private:
 } ;
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	typename COND_T,
 	bool RHS_NA , typename RHS_T
 	>
@@ -189,7 +189,7 @@ private:
 /* ifelse( cond, Vector, primitive ) */
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool LHS_NA , typename LHS_T
 	>
@@ -226,7 +226,7 @@ private:
 } ;
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	typename COND_T,
 	bool LHS_NA , typename LHS_T
 	>
@@ -267,7 +267,7 @@ private:
 /* ifelse( cond, primitive, primitive ) */
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T
 	>
 class IfElse_Primitive_Primitive : public VectorBase<
@@ -301,7 +301,7 @@ private:
 } ;
 
 template <
-	int RTYPE, typename COND_T
+	SEXPTYPE RTYPE, typename COND_T
 	>
 class IfElse_Primitive_Primitive<RTYPE,false,COND_T> : public VectorBase<
 	RTYPE,
@@ -333,7 +333,7 @@ private:
 } // sugar
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool LHS_NA , typename LHS_T,
 	bool RHS_NA , typename RHS_T
@@ -349,7 +349,7 @@ ifelse(
 
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool RHS_NA , typename RHS_T
 	>
@@ -363,7 +363,7 @@ ifelse(
 }
 
 template <
-	int RTYPE,
+	SEXPTYPE RTYPE,
 	bool COND_NA, typename COND_T,
 	bool RHS_NA , typename RHS_T
 	>

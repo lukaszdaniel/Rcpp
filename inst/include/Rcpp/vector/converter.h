@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 namespace internal {
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	class element_converter{
 	public:
 		typedef typename ::Rcpp::traits::storage_type<RTYPE>::type target ;
@@ -39,7 +39,7 @@ namespace internal {
 		}
 	} ;
 
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	class string_element_converter {
 	public:
 		typedef SEXP target ;
@@ -70,7 +70,7 @@ namespace internal {
 		}
 	} ;
 
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	class generic_element_converter {
 	public:
 		typedef SEXP target ;
@@ -91,7 +91,7 @@ namespace internal {
 }
 
 namespace traits{
-	template <int RTYPE> struct r_vector_element_converter{
+	template <SEXPTYPE RTYPE> struct r_vector_element_converter{
 		typedef typename ::Rcpp::internal::element_converter<RTYPE> type ;
 	} ;
 	template<> struct r_vector_element_converter<STRSXP>{

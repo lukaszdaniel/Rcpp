@@ -26,7 +26,7 @@ namespace Rcpp{
 namespace traits{
 
 	// default for most types
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	bool is_nan( typename storage_type<RTYPE>::type){
 	    return false ;
 	}

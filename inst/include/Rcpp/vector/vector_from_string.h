@@ -25,13 +25,13 @@
 namespace Rcpp{
 namespace internal{
 
-    template <int RTYPE>
+    template <SEXPTYPE RTYPE>
     inline SEXP vector_from_string( const std::string& st ) {
         Shield<SEXP> str(Rf_mkString(st.c_str()));
         return r_cast<RTYPE>(str) ;
     }
 
-    template <int RTYPE>
+    template <SEXPTYPE RTYPE>
     SEXP vector_from_string_expr( const std::string& code) {
         ParseStatus status;
         Shield<SEXP> expr( Rf_mkString( code.c_str() ) ) ;

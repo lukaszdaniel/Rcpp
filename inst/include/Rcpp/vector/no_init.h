@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE, template <class> class StoragePolicy>
+template <SEXPTYPE RTYPE, template <class> class StoragePolicy>
 class Matrix;
 
 class no_init_vector {
@@ -35,7 +35,7 @@ public:
         return size;
     }
 
-    template <int RTYPE, template <class> class StoragePolicy >
+    template <SEXPTYPE RTYPE, template <class> class StoragePolicy >
     operator Vector<RTYPE, StoragePolicy>() const {
         // Explicitly protect temporary vector to avoid false positive
         // with rchk (#892)
@@ -60,7 +60,7 @@ public:
         return nc;
     }
 
-    template <int RTYPE, template <class> class StoragePolicy >
+    template <SEXPTYPE RTYPE, template <class> class StoragePolicy >
     operator Matrix<RTYPE, StoragePolicy>() const {
         // Explicitly protect temporary matrix to avoid false positive
         // with rchk (#892)

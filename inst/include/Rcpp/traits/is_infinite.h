@@ -26,7 +26,7 @@ namespace Rcpp{
 namespace traits{
 
     // default for all but REALSXP and CPLXSXP
-	template <int RTYPE>
+	template <SEXPTYPE RTYPE>
 	bool is_infinite( typename storage_type<RTYPE>::type){
 	    return false ;
 	}

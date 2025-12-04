@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace internal{
 
-	template<int RTYPE, template <class> class StoragePolicy>
+	template<SEXPTYPE RTYPE, template <class> class StoragePolicy>
 	class string_proxy {
 	public:
 
@@ -137,10 +137,10 @@ namespace internal{
 		 * Prints the element this proxy refers to to an
 		 * output stream
 		 */
-		template <int RT>
+		template <SEXPTYPE RT>
 		friend std::ostream& operator<<(std::ostream& os, const string_proxy<RT>& proxy);
 
-		template <int RT>
+		template <SEXPTYPE RT>
 		friend std::string operator+( const std::string& x, const string_proxy<RT>& proxy);
 
 		void swap( string_proxy& other ){
@@ -217,7 +217,7 @@ namespace internal{
 
 	} ;
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator<( const string_proxy<RT>& lhs, const string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -225,7 +225,7 @@ namespace internal{
 			) < 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator>( const string_proxy<RT>& lhs, const string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -233,7 +233,7 @@ namespace internal{
 			) > 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator>=( const string_proxy<RT>& lhs, const string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -241,7 +241,7 @@ namespace internal{
 			) >= 0 ;
 	}
 
-	template <int RT>
+	template <SEXPTYPE RT>
 	bool operator<=( const string_proxy<RT>& lhs, const string_proxy<RT>& rhs) {
 		return strcmp(
 			const_cast<char *>(lhs.begin() ),
@@ -249,7 +249,7 @@ namespace internal{
 			) <= 0 ;
 	}
 
-	template<int RTYPE, template <class> class StoragePolicy> std::string string_proxy<RTYPE, StoragePolicy>::buffer ;
+	template<SEXPTYPE RTYPE, template <class> class StoragePolicy> std::string string_proxy<RTYPE, StoragePolicy>::buffer ;
 
 	inline std::ostream& operator<<(std::ostream& os, const string_proxy<STRSXP>& proxy) {
 	    os << static_cast<const char*>(proxy) ;

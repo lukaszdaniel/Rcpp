@@ -46,7 +46,7 @@ namespace Rcpp{
 
 		template <typename InputIterator, typename value_type>
 			void export_range__impl( SEXP x, InputIterator first, ::Rcpp::traits::false_type ) {
-			const int RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
+			const SEXPTYPE RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
 			typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 			Shield<SEXP> y( ::Rcpp::r_cast<RTYPE>(x) ) ;
 			STORAGE* start = ::Rcpp::internal::r_vector_start<RTYPE>(y) ;
@@ -55,7 +55,7 @@ namespace Rcpp{
 
 		template <typename InputIterator, typename value_type>
 		void export_range__impl( SEXP x, InputIterator first, ::Rcpp::traits::true_type ) {
-			const int RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
+			const SEXPTYPE RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
 			typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 			Shield<SEXP> y( ::Rcpp::r_cast<RTYPE>(x) ) ;
 			STORAGE* start = ::Rcpp::internal::r_vector_start<RTYPE>(y) ;
@@ -103,7 +103,7 @@ namespace Rcpp{
 
 		template <typename T, typename value_type>
 			void export_indexing__impl( SEXP x, T& res, ::Rcpp::traits::false_type ) {
-			const int RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
+			const SEXPTYPE RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
 			typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 			Shield<SEXP> y( ::Rcpp::r_cast<RTYPE>(x) ) ;
 			STORAGE* start = ::Rcpp::internal::r_vector_start<RTYPE>(y) ;
@@ -115,7 +115,7 @@ namespace Rcpp{
 
 		template <typename T, typename value_type>
 		void export_indexing__impl( SEXP x, T& res, ::Rcpp::traits::true_type ) {
-			const int RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
+			const SEXPTYPE RTYPE = ::Rcpp::traits::r_sexptype_traits<value_type>::rtype ;
 			typedef typename ::Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
 			Shield<SEXP> y( ::Rcpp::r_cast<RTYPE>(x) );
 			STORAGE* start = ::Rcpp::internal::r_vector_start<RTYPE>(y) ;

@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-	template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
+	template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T >
 	class Plus_Vector_Vector : public Rcpp::VectorBase<RTYPE, true , Plus_Vector_Vector<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T> > {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -83,7 +83,7 @@ namespace sugar{
 
 
 	// specialization LHS_NA = false
-	template <int RTYPE, typename LHS_T, bool RHS_NA, typename RHS_T >
+	template <SEXPTYPE RTYPE, typename LHS_T, bool RHS_NA, typename RHS_T >
 	class Plus_Vector_Vector<RTYPE,false,LHS_T,RHS_NA,RHS_T> : public Rcpp::VectorBase<RTYPE,true, Plus_Vector_Vector<RTYPE,false,LHS_T,RHS_NA,RHS_T> > {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -136,7 +136,7 @@ namespace sugar{
 
 
 	// specialization for RHS_NA = false
-	template <int RTYPE, bool LHS_NA, typename LHS_T, typename RHS_T >
+	template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, typename RHS_T >
 	class Plus_Vector_Vector<RTYPE,LHS_NA,LHS_T,false,RHS_T> : public Rcpp::VectorBase<RTYPE, true , Plus_Vector_Vector<RTYPE,LHS_NA,LHS_T,false,RHS_T> > {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -190,7 +190,7 @@ namespace sugar{
 
 
 	// specialization for RHS_NA = false  and LHS_NA = false
-	template <int RTYPE, typename LHS_T, typename RHS_T >
+	template <SEXPTYPE RTYPE, typename LHS_T, typename RHS_T >
 	class Plus_Vector_Vector<RTYPE,false,LHS_T,false,RHS_T> : public Rcpp::VectorBase<RTYPE, false , Plus_Vector_Vector<RTYPE,false,LHS_T,false,RHS_T> > {
 	public:
 		typedef typename traits::storage_type<RTYPE>::type STORAGE ;
@@ -244,7 +244,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class Plus_Vector_Primitive :
 	    public Rcpp::VectorBase<RTYPE,true, Plus_Vector_Primitive<RTYPE,NA,T> > {
 	public:
@@ -296,7 +296,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, typename T>
+	template <SEXPTYPE RTYPE, typename T>
 	class Plus_Vector_Primitive<RTYPE,false,T> : public Rcpp::VectorBase<RTYPE,false, Plus_Vector_Primitive<RTYPE,false,T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,false,T> VEC_TYPE ;
@@ -347,7 +347,7 @@ namespace sugar{
 
 
 	// Vector * nona(primitive)
-	template <int RTYPE, bool NA, typename T>
+	template <SEXPTYPE RTYPE, bool NA, typename T>
 	class Plus_Vector_Primitive_nona : public Rcpp::VectorBase<RTYPE,true, Plus_Vector_Primitive_nona<RTYPE,NA,T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -395,7 +395,7 @@ namespace sugar{
 
 
 
-	template <int RTYPE, typename T>
+	template <SEXPTYPE RTYPE, typename T>
 	class Plus_Vector_Primitive_nona<RTYPE,false,T> : public Rcpp::VectorBase<RTYPE,false, Plus_Vector_Primitive_nona<RTYPE,false,T> > {
 	public:
 		typedef typename Rcpp::VectorBase<RTYPE,false,T> VEC_TYPE ;
@@ -443,7 +443,7 @@ namespace sugar{
 }
 
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if<traits::is_convertible<typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, typename sugar::Plus_Vector_Primitive<RTYPE,NA,T> >::type
 operator+(
 	const VectorBase<RTYPE,NA,T>& lhs,
@@ -453,7 +453,7 @@ operator+(
 }
 
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if<traits::is_convertible<typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, typename sugar::Plus_Vector_Primitive< RTYPE , NA , T> >::type
 operator+(
 	const U &rhs,
@@ -464,7 +464,7 @@ operator+(
 
 
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if<traits::is_convertible<typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, sugar::Plus_Vector_Primitive_nona<RTYPE,NA,T> >::type
 operator+(
 	const VectorBase<RTYPE,NA,T>& lhs,
@@ -473,7 +473,7 @@ operator+(
 	return sugar::Plus_Vector_Primitive_nona<RTYPE,NA,T>( lhs, rhs ) ;
 }
 
-template <int RTYPE,bool NA, typename T, typename U>
+template <SEXPTYPE RTYPE,bool NA, typename T, typename U>
 inline typename traits::enable_if<traits::is_convertible<typename traits::remove_const_and_reference<U>::type, typename traits::storage_type<RTYPE>::type>::value, sugar::Plus_Vector_Primitive_nona< RTYPE , NA , T> >::type
 operator+(
 	const typename sugar::NonaPrimitive< U > &rhs,
@@ -483,7 +483,7 @@ operator+(
 }
 
 
-template <int RTYPE,bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE,bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline sugar::Plus_Vector_Vector<
 	RTYPE ,
 	LHS_NA, LHS_T,

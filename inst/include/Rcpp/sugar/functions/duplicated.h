@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 inline LogicalVector duplicated( const VectorBase<RTYPE,NA,T>& x ){
     Vector<RTYPE> vec(x) ;
     sugar::IndexHash<RTYPE> hash(vec) ;

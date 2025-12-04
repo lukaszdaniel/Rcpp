@@ -24,7 +24,7 @@
 
 namespace Rcpp{
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class MatrixRow : public VectorBase< RTYPE, true, MatrixRow<RTYPE> > {
 public:
     typedef Matrix<RTYPE> MATRIX ;
@@ -150,7 +150,7 @@ public:
         row(other.row)
     {} ;
 
-    template <int RT, bool NA, typename T>
+    template <SEXPTYPE RT, bool NA, typename T>
     MatrixRow& operator=( const Rcpp::VectorBase<RT,NA,T>& rhs ){
         int n = size() ;
         const T& ref = rhs.get_ref() ;
@@ -212,7 +212,7 @@ private:
     }
 } ;
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 class ConstMatrixRow : public VectorBase< RTYPE, true, ConstMatrixRow<RTYPE> > {
 public:
     typedef Matrix<RTYPE> MATRIX ;

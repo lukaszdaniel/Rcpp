@@ -29,7 +29,7 @@ namespace Rcpp{
         template <typename T>
         inline SEXP wrap_range_sugar_expression( const T& object, Rcpp::traits::true_type) {
             RCPP_DEBUG_1( "wrap_range_sugar_expression<%s>(., true  )", DEMANGLE(T) )
-            const int RTYPE = T::r_type::value ;
+            const SEXPTYPE RTYPE = T::r_type::value ;
             return Rcpp::Vector<RTYPE>(object) ;
         }
 

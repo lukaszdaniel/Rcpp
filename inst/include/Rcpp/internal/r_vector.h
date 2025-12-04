@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 typename Rcpp::traits::storage_type<RTYPE>::type* r_vector_start(SEXP x) {
     typedef typename Rcpp::traits::storage_type<RTYPE>::type* pointer;
     return reinterpret_cast<pointer>(dataptr(x));
@@ -51,7 +51,7 @@ RCPP_VECTOR_START_IMPL(REALSXP, REAL);
  * The value 0 statically casted to the appropriate type for
  * the given SEXP type
  */
-template <int RTYPE,typename CTYPE>				// #nocov start
+template <SEXPTYPE RTYPE,typename CTYPE>				// #nocov start
 inline CTYPE get_zero() {
     return static_cast<CTYPE>(0);
 }								// #nocov end
@@ -73,7 +73,7 @@ inline Rcomplex get_zero<CPLXSXP,Rcomplex>(){
  * vector with the value 0 of the appropriate type, for example
  * an INTSXP vector is initialized with (int)0, etc...
  */
-template<int RTYPE> void r_init_vector(SEXP x) {		// #nocov start
+template<SEXPTYPE RTYPE> void r_init_vector(SEXP x) {		// #nocov start
     typedef typename ::Rcpp::traits::storage_type<RTYPE>::type CTYPE;
     CTYPE* start=r_vector_start<RTYPE>(x);
     std::fill(start, start + Rf_xlength(x), get_zero<RTYPE,CTYPE>());
@@ -111,7 +111,7 @@ inline void r_init_vector<STRSXP>(SEXP /*x*/) {}
  * of qualified Vector types. Hence when using this class
  * on unqualified Vectors, the compiler will emit errors.
  */
-template<int RTYPE>
+template<SEXPTYPE RTYPE>
 class Sort_is_not_allowed_for_this_type;
 
 /**

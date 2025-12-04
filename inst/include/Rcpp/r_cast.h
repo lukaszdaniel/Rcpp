@@ -42,7 +42,7 @@ namespace Rcpp {
 
         // r_true_cast is only meant to be used when the target SEXP type
         // is different from the SEXP type of x
-        template <int TARGET>
+        template <SEXPTYPE TARGET>
         SEXP r_true_cast( SEXP x) {
 
             const char* fmt = "Not compatible conversion to target: "
@@ -55,7 +55,7 @@ namespace Rcpp {
             return x; // makes solaris happy
         }
 
-        template <int RTYPE>
+        template <SEXPTYPE RTYPE>
         SEXP basic_cast( SEXP x) {				// #nocov start
             if( TYPEOF(x) == RTYPE ) return x;
             switch( TYPEOF(x) ){
@@ -156,7 +156,7 @@ namespace Rcpp {
 
     } // namespace internal
 
-    template <int TARGET> SEXP r_cast(SEXP x) {
+    template <SEXPTYPE TARGET> SEXP r_cast(SEXP x) {
         if (TYPEOF(x) == TARGET) {
             return x;
         } else {

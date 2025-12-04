@@ -24,7 +24,7 @@
 namespace Rcpp{
 namespace sugar{
 
-    template <int RTYPE, bool NA, typename T>
+    template <SEXPTYPE RTYPE, bool NA, typename T>
     class Max {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -51,7 +51,7 @@ namespace sugar{
     } ;
 
     // version for NA = false
-    template <int RTYPE, typename T>
+    template <SEXPTYPE RTYPE, typename T>
     class Max<RTYPE,false,T> {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -78,7 +78,7 @@ namespace sugar{
 
 } // sugar
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 sugar::Max<RTYPE,NA,T> max( const VectorBase<RTYPE,NA,T>& x){
     return sugar::Max<RTYPE,NA,T>(x.get_ref()) ;
 }

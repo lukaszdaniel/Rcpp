@@ -25,8 +25,8 @@
 namespace Rcpp{
     namespace traits{
 
-        template<> struct r_sexptype_traits<rcpp_long_long_type>{ enum{ rtype = REALSXP } ; } ;
-        template<> struct r_sexptype_traits<rcpp_ulong_long_type>{ enum{ rtype = REALSXP } ; } ;
+        template<> struct r_sexptype_traits<rcpp_long_long_type>{ static constexpr SEXPTYPE rtype = REALSXP; } ;
+        template<> struct r_sexptype_traits<rcpp_ulong_long_type>{ static constexpr SEXPTYPE rtype = REALSXP; } ;
 
         template<> struct r_type_traits<rcpp_long_long_type>{ typedef r_type_primitive_tag r_category ; } ;
         template<> struct r_type_traits< std::pair<const std::string,rcpp_long_long_type> >{ typedef r_type_primitive_tag r_category ; } ;

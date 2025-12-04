@@ -25,7 +25,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 class WhichMax {
 public:
     typedef typename Rcpp::VectorBase<RTYPE,NA,T> VEC_TYPE ;
@@ -54,7 +54,7 @@ private:
 
 } ;
 
-template <int RTYPE, typename T>
+template <SEXPTYPE RTYPE, typename T>
 class WhichMax<RTYPE,false,T> {
 public:
     typedef typename Rcpp::VectorBase<RTYPE,false,T> VEC_TYPE ;
@@ -86,7 +86,7 @@ private:
 
 
 
-template <int RTYPE, bool NA, typename T>
+template <SEXPTYPE RTYPE, bool NA, typename T>
 R_xlen_t which_max( const VectorBase<RTYPE,NA,T>& t ){
 	return sugar::WhichMax<RTYPE,NA,T>(t).get() ;
 }

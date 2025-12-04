@@ -40,7 +40,7 @@ namespace sugar{
         SET& set ;
     } ;
 
-    template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
     class SetDiff {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -68,7 +68,7 @@ namespace sugar{
 
     } ;
 
-    template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
     class SetEqual {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -97,7 +97,7 @@ namespace sugar{
 
     } ;
 
-    template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
     class Intersect {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -130,7 +130,7 @@ namespace sugar{
 
     } ;
 
-    template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+    template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
     class Union {
     public:
         typedef typename Rcpp::traits::storage_type<RTYPE>::type STORAGE ;
@@ -158,23 +158,23 @@ namespace sugar{
 
 } // sugar
 
-template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline Vector<RTYPE> setdiff( const VectorBase<RTYPE,LHS_NA,LHS_T>& lhs, const VectorBase<RTYPE,RHS_NA,RHS_T>& rhs ){
     return sugar::SetDiff<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T>( lhs.get_ref(), rhs.get_ref() ).get() ;
 }
 
-template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline bool setequal( const VectorBase<RTYPE,LHS_NA,LHS_T>& lhs, const VectorBase<RTYPE,RHS_NA,RHS_T>& rhs ){
     return sugar::SetEqual<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T>( lhs.get_ref(), rhs.get_ref() ).get() ;
 }
 
-template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline Vector<RTYPE> intersect( const VectorBase<RTYPE,LHS_NA,LHS_T>& lhs, const VectorBase<RTYPE,RHS_NA,RHS_T>& rhs ){
     return sugar::Intersect<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T>( lhs.get_ref(), rhs.get_ref() ).get() ;
 }
 
 // we cannot use "union" because it is a keyword
-template <int RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
+template <SEXPTYPE RTYPE, bool LHS_NA, typename LHS_T, bool RHS_NA, typename RHS_T>
 inline Vector<RTYPE> union_( const VectorBase<RTYPE,LHS_NA,LHS_T>& lhs, const VectorBase<RTYPE,RHS_NA,RHS_T>& rhs ){
     return sugar::Union<RTYPE,LHS_NA,LHS_T,RHS_NA,RHS_T>( lhs.get_ref(), rhs.get_ref() ).get() ;
 }

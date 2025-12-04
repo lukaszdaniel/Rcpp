@@ -110,7 +110,7 @@ namespace sugar {
     template <typename T> struct sugar_const_iterator_type {
         typedef SugarIterator<T> type ;
     } ;
-    template <int RTYPE> struct sugar_const_iterator_type< Rcpp::Vector<RTYPE> >{
+    template <SEXPTYPE RTYPE> struct sugar_const_iterator_type< Rcpp::Vector<RTYPE> >{
         typedef typename Rcpp::Vector<RTYPE>::const_iterator type ;
     } ;
     template <> struct sugar_const_iterator_type< CharacterVector >{
@@ -119,7 +119,7 @@ namespace sugar {
 
 
     template <typename T> struct is_sugar_vector : public Rcpp::traits::false_type{} ;
-    template <int RTYPE> struct is_sugar_vector< Rcpp::Vector<RTYPE> > : public Rcpp::traits::true_type{} ;
+    template <SEXPTYPE RTYPE> struct is_sugar_vector< Rcpp::Vector<RTYPE> > : public Rcpp::traits::true_type{} ;
 
 
     template <typename T>

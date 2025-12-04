@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace sugar{
 
-template <int RTYPE,
+template <SEXPTYPE RTYPE,
     bool NA_1, typename T_1,
     bool NA_2, typename T_2,
     typename Function
@@ -55,7 +55,7 @@ private:
 	Function fun ;
 } ;
 
-template <int RTYPE,
+template <SEXPTYPE RTYPE,
     bool NA_1, typename T_1,
     typename PRIM_2 ,
     typename Function
@@ -86,7 +86,7 @@ private:
 	Function fun ;
 } ;
 
-template <int RTYPE,
+template <SEXPTYPE RTYPE,
     typename PRIM_1,
     bool NA_2, typename T_2,
     typename Function
@@ -122,19 +122,19 @@ private:
 } // sugar
 
 
-template <int RTYPE, bool NA_1, typename T_1, bool NA_2, typename T_2, typename Function >
+template <SEXPTYPE RTYPE, bool NA_1, typename T_1, bool NA_2, typename T_2, typename Function >
 inline sugar::Mapply_2<RTYPE,NA_1,T_1,NA_2,T_2,Function>
 mapply( const Rcpp::VectorBase<RTYPE,NA_1,T_1>& t1, const Rcpp::VectorBase<RTYPE,NA_2,T_2>& t2, Function fun ){
 	return sugar::Mapply_2<RTYPE,NA_1,T_1,NA_2,T_2,Function>( t1.get_ref(), t2.get_ref(), fun ) ;
 }
 
-template <int RTYPE, bool NA_1, typename T_1, typename Function >
+template <SEXPTYPE RTYPE, bool NA_1, typename T_1, typename Function >
 inline sugar::Mapply_2_Vector_Primitive<RTYPE,NA_1,T_1,double,Function>
 mapply( const Rcpp::VectorBase<RTYPE,NA_1,T_1>& t1, double t2, Function fun ){
 	return sugar::Mapply_2_Vector_Primitive<RTYPE,NA_1,T_1,double,Function>( t1.get_ref(), t2, fun ) ;
 }
 
-template <int RTYPE, bool NA_2, typename T_2, typename Function >
+template <SEXPTYPE RTYPE, bool NA_2, typename T_2, typename Function >
 inline sugar::Mapply_2_Primitive_Vector<RTYPE,double, NA_2,T_2,Function>
 mapply( double t1, const Rcpp::VectorBase<RTYPE,NA_2,T_2>& t2, Function fun ){
 	return sugar::Mapply_2_Primitive_Vector<RTYPE,double, NA_2,T_2,Function>( t1, t2.get_ref(), fun ) ;

@@ -26,7 +26,7 @@
 namespace Rcpp{
 namespace internal{
 
-template <int FROM, int TO>
+template <SEXPTYPE FROM, SEXPTYPE TO>
 typename ::Rcpp::traits::storage_type<TO>::type
 r_coerce( typename ::Rcpp::traits::storage_type<FROM>::type from ) ;
 
@@ -182,7 +182,7 @@ inline Rcomplex r_coerce<LGLSXP,CPLXSXP>(int from){
 }
 
 // -> STRSXP
-template <int RTYPE>
+template <SEXPTYPE RTYPE>
 const char* coerce_to_string( typename ::Rcpp::traits::storage_type<RTYPE>::type from ) ;
 
 inline const char* dropTrailing0(char *s, char cdec) {

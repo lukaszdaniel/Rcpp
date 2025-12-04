@@ -45,7 +45,7 @@ namespace Rcpp{
     #define RCPP_HASH(X) (3141592653U * ((uint32_t)(X)) >> (32 - k))
     #endif
 
-    template <int RTYPE>
+    template <SEXPTYPE RTYPE>
     class IndexHash {
     public:
         typedef typename traits::storage_type<RTYPE>::type STORAGE ;
